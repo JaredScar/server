@@ -52,17 +52,16 @@ public class OrganizationBillingControllerTests
     {
         sutProvider.GetDependency<ICurrentContext>().AccessMembersTab(organizationId).Returns(true);
         sutProvider.GetDependency<IOrganizationBillingService>().GetMetadata(organizationId)
-            .Returns(new OrganizationMetadata(true, true, true, true));
+            .Returns(new OrganizationMetadata(true, true));
 
         var result = await sutProvider.Sut.GetMetadataAsync(organizationId);
 
         Assert.IsType<Ok<OrganizationMetadataResponse>>(result);
 
-        var response = ((Ok<OrganizationMetadataResponse>)result).Value;
+        var organizationMetadataResponse = ((Ok<OrganizationMetadataResponse>)result).Value;
 
-        Assert.True(response.IsEligibleForSelfHost);
-        Assert.True(response.IsManaged);
-        Assert.True(response.IsOnSecretsManagerStandalone);
+        Assert.True(organizationMetadataResponse.IsEligibleForSelfHost);
+        Assert.True(organizationMetadataResponse.IsOnSecretsManagerStandalone);
     }
 
     [Theory, BitAutoData]

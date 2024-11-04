@@ -196,8 +196,8 @@ public class DevicesController : Controller
     }
 
     [HttpDelete("{id}")]
-    [HttpPost("{id}/deactivate")]
-    public async Task Deactivate(string id)
+    [HttpPost("{id}/delete")]
+    public async Task Delete(string id)
     {
         var device = await _deviceRepository.GetByIdAsync(new Guid(id), _userService.GetProperUserId(User).Value);
         if (device == null)
@@ -205,7 +205,7 @@ public class DevicesController : Controller
             throw new NotFoundException();
         }
 
-        await _deviceService.DeactivateAsync(device);
+        await _deviceService.DeleteAsync(device);
     }
 
     [AllowAnonymous]

@@ -38,10 +38,6 @@ public class Device : ITableObject<Guid>
     /// </summary>
     public string? EncryptedPrivateKey { get; set; }
 
-    /// <summary>
-    /// Whether the device is active for the user.
-    /// </summary>
-    public bool Active { get; set; } = true;
 
     public void SetNewId()
     {

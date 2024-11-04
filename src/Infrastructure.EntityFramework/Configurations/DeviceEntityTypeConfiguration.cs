@@ -21,10 +21,6 @@ public class DeviceEntityTypeConfiguration : IEntityTypeConfiguration<Device>
             .HasIndex(d => d.Identifier)
             .IsClustered(false);
 
-        builder.Property(c => c.Active)
-            .ValueGeneratedNever()
-            .HasDefaultValue(true);
-
         builder.ToTable(nameof(Device));
     }
 }

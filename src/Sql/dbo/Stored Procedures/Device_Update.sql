@@ -9,8 +9,7 @@
     @RevisionDate DATETIME2(7),
     @EncryptedUserKey VARCHAR(MAX) = NULL,
     @EncryptedPublicKey VARCHAR(MAX) = NULL,
-    @EncryptedPrivateKey VARCHAR(MAX) = NULL,
-    @Active BIT = 1
+    @EncryptedPrivateKey VARCHAR(MAX) = NULL
 AS
 BEGIN
     SET NOCOUNT ON
@@ -27,8 +26,7 @@ BEGIN
         [RevisionDate] = @RevisionDate,
         [EncryptedUserKey] = @EncryptedUserKey,
         [EncryptedPublicKey] = @EncryptedPublicKey,
-        [EncryptedPrivateKey] = @EncryptedPrivateKey,
-        [Active] = @Active
+        [EncryptedPrivateKey] = @EncryptedPrivateKey
     WHERE
         [Id] = @Id
 END

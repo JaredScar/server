@@ -325,16 +325,13 @@ public class ProviderMigrator(
 
         var organizationCancellationCredit = organizationCustomers.Sum(customer => customer.Balance);
 
-        if (organizationCancellationCredit != 0)
-        {
-            await stripeAdapter.CustomerBalanceTransactionCreate(provider.GatewayCustomerId,
-                new CustomerBalanceTransactionCreateOptions
-                {
-                    Amount = organizationCancellationCredit,
-                    Currency = "USD",
-                    Description = "Unused, prorated time for client organization subscriptions."
-                });
-        }
+        await stripeAdapter.CustomerBalanceTransactionCreate(provider.GatewayCustomerId,
+            new CustomerBalanceTransactionCreateOptions
+            {
+                Amount = organizationCancellationCredit,
+                Currency = "USD",
+                Description = "Unused, prorated time for client organization subscriptions."
+            });
 
         var migrationRecords = await Task.WhenAll(organizations.Select(organization =>
             clientOrganizationMigrationRecordRepository.GetByOrganizationId(organization.Id)));

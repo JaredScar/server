@@ -939,10 +939,6 @@ namespace Bit.MySqlMigrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(true);
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime(6)");
 

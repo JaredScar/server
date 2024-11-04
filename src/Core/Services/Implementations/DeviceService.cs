@@ -41,18 +41,9 @@ public class DeviceService : IDeviceService
         await _pushRegistrationService.DeleteRegistrationAsync(device.Id.ToString());
     }
 
-    public async Task DeactivateAsync(Device device)
+    public async Task DeleteAsync(Device device)
     {
-        // already deactivated
-        if (!device.Active)
-        {
-            return;
-        }
-
-        device.Active = false;
-        device.RevisionDate = DateTime.UtcNow;
-        await _deviceRepository.UpsertAsync(device);
-
+        await _deviceRepository.DeleteAsync(device);
         await _pushRegistrationService.DeleteRegistrationAsync(device.Id.ToString());
     }
 
